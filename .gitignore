@@ -1,0 +1,13 @@
+# The forked exercise repo is its own git repo — don't track it here.
+cohort-004-project/
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Logs / env
+*.log
+.env
+.env.*

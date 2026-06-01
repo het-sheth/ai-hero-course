@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Style guide · course-wiki</title>
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <span class="brand"><a href="../index.html">course-wiki</a></span>
+    <span class="crumb"><span class="sep">/</span> meta <span class="sep">/</span> style guide</span>
+    <span class="spacer"></span>
+    <span class="crumb"><a href="concept-template.html">concept template</a></span>
+  </div>
+</header>
+
+<main class="wrap">
+  <h1>Style guide</h1>
+  <p class="lede">Every component <code>assets/wiki.css</code> provides. The <code>/course-wiki</code>
+  skill points here so pages stay consistent. Build pages from these classes — never inline styles.</p>
+
+  <h2>Headings &amp; text</h2>
+  <h3>This is an h3</h3>
+  <p>Body text with <strong>strong</strong>, a <a href="#">link</a>, and inline <code>code</code>.
+  The reading column is capped for legibility.</p>
+
+  <h2>Callouts</h2>
+  <div class="callout note"><span class="label">Note</span> Neutral aside or context.</div>
+  <div class="callout tip"><span class="label">Tip</span> A useful trick worth remembering.</div>
+  <div class="callout gotcha"><span class="label">Gotcha</span> A trap or sharp edge.</div>
+  <div class="callout warn"><span class="label">Warning</span> Something that can bite you.</div>
+
+  <h2>Code block</h2>
+  <div class="code-block">
+    <div class="code-head">terminal</div>
+    <pre><code>pnpm install
+pnpm db:migrate &amp;&amp; pnpm db:seed
+pnpm dev</code></pre>
+  </div>
+
+  <h2>Table</h2>
+  <table>
+    <thead><tr><th>Column</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td>Row A</td><td>Description A</td></tr>
+      <tr><td>Row B</td><td>Description B</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Tags</h2>
+  <div class="tags"><span class="tag">process</span><span class="tag">context</span><span class="tag">afk</span></div>
+
+  <h2>SVG diagram</h2>
+  <figure>
+    <div class="diagram">
+      <svg viewBox="0 0 320 90" role="img" aria-label="Two boxes joined by an arrow">
+        <defs><marker id="sg" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#8a8a90"/></marker></defs>
+        <rect x="20" y="28" width="110" height="36" rx="8" fill="#b5451d" opacity="0.12" stroke="#b5451d"/>
+        <text x="75" y="51" text-anchor="middle" font-size="13" fill="#b5451d" font-weight="700">input</text>
+        <rect x="190" y="28" width="110" height="36" rx="8" fill="#1a5fb4" opacity="0.10" stroke="#1a5fb4"/>
+        <text x="245" y="51" text-anchor="middle" font-size="13" fill="#1a5fb4" font-weight="700">output</text>
+        <line x1="130" y1="46" x2="188" y2="46" stroke="#8a8a90" stroke-width="1.6" marker-end="url(#sg)"/>
+      </svg>
+    </div>
+    <figcaption>Prefer inline SVG for diagrams — crisp, themeable, no image hosting.</figcaption>
+  </figure>
+
+  <h2>Related &amp; references lists</h2>
+  <ul class="related">
+    <li><strong>Some concept</strong> <span class="why">— why it's linked</span></li>
+  </ul>
+  <ul class="refs">
+    <li><a href="#">A source</a> <span class="src">— where it came from</span></li>
+  </ul>
+
+  <h2>Hub card &amp; stub</h2>
+  <div class="cards">
+    <a class="card" href="#"><div class="card-title">Real page</div><div class="card-desc">Has content.</div></a>
+    <a class="card stub" href="#"><div class="card-title">Planned page</div><div class="card-desc">Not written yet.</div></a>
+  </div>
+
+  <h2>Palette</h2>
+  <div class="swatches">
+    <div class="swatch"><div class="chip" style="background:var(--accent)"></div><div class="name">--accent</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--link)"></div><div class="name">--link</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--tip-bd)"></div><div class="name">tip</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--gotcha-bd)"></div><div class="name">gotcha</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--warn-bd)"></div><div class="name">warn</div></div>
+    <div class="swatch"><div class="chip" style="background:var(--surface-2)"></div><div class="name">surface-2</div></div>
+  </div>
+
+  <footer class="foot">
+    <a href="../index.html">← back to the map</a> · supports light &amp; dark automatically.
+  </footer>
+</main>
+
+</body>
+</html>
