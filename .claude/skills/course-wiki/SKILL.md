@@ -86,10 +86,20 @@ No page ships without a References section.
 
 **"Refresh the hub"** — reconcile `index.html` cards/log against what's actually in `concepts/` and `log/`.
 
-## Viewing
+## Viewing & publishing
 
-Local: open `course-wiki/index.html` in a browser (`open` on macOS). The repo
-(`het-sheth/ai-hero-course`, public) is GitHub-Pages-ready — relative links + shared CSS work as-is.
+Local: open `course-wiki/index.html` in a browser (`open` on macOS).
+Live site (GitHub Pages): https://het-sheth.github.io/ai-hero-course/ (redirects into `course-wiki/`).
+
+**`main` is protected (PR-only, enforced for admins too).** Never push wiki changes directly to
+`main` — it will be rejected. Workflow for any update:
+```
+git checkout -b wiki/<short-topic>
+git add -A && git commit -m "..."   # personal identity is automatic under ~/projects/
+git push -u origin wiki/<short-topic>
+gh pr create --fill            # GH_HOST=github.com; merge with: gh pr merge --squash --admin
+```
+Pages redeploys automatically on merge to `main`.
 
 ## References
 
