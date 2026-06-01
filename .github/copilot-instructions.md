@@ -10,9 +10,9 @@ Engineers* cohort, plus a workspace. The wiki lives in `course-wiki/` and is mai
   invented or padded from general knowledge. Flag any concept/log page whose prose reads like
   generic AI-written filler, makes claims with no source, or adds "takeaways"/examples that don't
   trace back to a cited lesson.
-- **Every** concept and log page must end with a `<h2>References</h2>` + `<ul class="refs">`
-  citing its source (course lesson + module/lesson id, plus any docs). Flag pages with no
-  References section.
+- **Every** concept and log page must include a `<h2>References</h2>` + `<ul class="refs">` near
+  the end (typically just before the `<footer class="foot">`), citing its source (course lesson +
+  module/lesson id, plus any docs). Flag pages with no References section.
 
 ## Design system (consistency + clean diffs)
 
