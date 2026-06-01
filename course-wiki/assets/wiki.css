@@ -67,7 +67,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.wrap { max-width: var(--measure); margin: 0 auto; padding: 0 22px 120px; }
+.wrap, .wrap--wide { margin: 0 auto; padding: 0 22px 120px; }
+.wrap { max-width: var(--measure); }
 .wrap--wide { max-width: var(--measure-wide); }
 
 /* ---------- top bar / breadcrumb ---------- */
