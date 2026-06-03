@@ -104,5 +104,5 @@ Pages redeploys automatically on merge to `main`.
 ## References
 
 - Course: https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04
-- The Unreasonable Effectiveness of HTML: https://www.anthropic.com/engineering/unreasonable-effectiveness-of-html
+- The Unreasonable Effectiveness of HTML: https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html
 - Exercise repo (fork): https://github.com/het-sheth/cohort-004-project
