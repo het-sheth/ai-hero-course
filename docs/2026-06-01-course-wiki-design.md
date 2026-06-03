@@ -6,7 +6,7 @@
 
 A living second brain for Matt Pocock's *AI Coding for Real Engineers* cohort, as a set of
 interlinked, self-contained **HTML** pages (Karpathy "LLM wiki" feel + Thariq's
-[*Unreasonable Effectiveness of HTML*](https://www.anthropic.com/engineering/unreasonable-effectiveness-of-html)),
+[*Unreasonable Effectiveness of HTML*](https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html)),
 authored through a reusable `/course-wiki` skill. Designed to outlive the cohort.
 
 ## Key decisions

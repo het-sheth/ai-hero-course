@@ -16,7 +16,7 @@ cohort (004, June 2026).
 ## The wiki
 
 Built as **HTML, not markdown**, following Thariq's
-[*Unreasonable Effectiveness of HTML*](https://www.anthropic.com/engineering/unreasonable-effectiveness-of-html):
+[*Unreasonable Effectiveness of HTML*](https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html):
 richer than markdown, easy to read, easy to share. Structure:
 
 - **Concept pages** (`course-wiki/concepts/`) — one atomic, cross-linked page per concept.
