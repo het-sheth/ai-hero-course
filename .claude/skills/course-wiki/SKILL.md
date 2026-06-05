@@ -51,8 +51,12 @@ course-wiki/
    `tag`, `callout {tip|gotcha|warn|note}`, `code-block`, `table`, `figure.diagram` (inline SVG),
    `related`, `refs`, `cards`/`card`/`card.stub`, `timeline`, `foot`. See `meta/style-guide.html`.
 3. Diagrams: inline **SVG**, not images — crisp, themeable, no hosting.
-4. Light/dark is automatic via CSS variables; don't hardcode colours outside SVG (and in SVG,
-   use the palette hexes from the style guide).
+4. Theme is **"phosphor terminal"**: dark-first (auto light "paper" mode), IBM Plex Mono headings +
+   IBM Plex Sans body (loaded via `@import` at the top of `wiki.css`), amber primary + green links.
+   Don't hardcode colours outside SVG. **In SVG use this palette** (designed for the dark diagram
+   surface): amber `#ffb000`, cyan `#58c7f3`, green `#5af78e`, dim/lines `#9aa0a8`, light text
+   `#c2c7d0`, dark track `#1b1e25`. Box fills use these at `opacity:0.10–0.14` with full-strength
+   strokes/text. See `meta/style-guide.html`.
 
 ## Always cite sources
 
