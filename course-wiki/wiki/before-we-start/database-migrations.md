@@ -3,12 +3,13 @@ title: Database Migrations
 topic: before-we-start
 status: learning
 created: 2026-06-02
-updated: 2026-06-02
+updated: 2026-06-09
 lede: "Keeping the database in sync with your code via a three-step Drizzle workflow: edit the schema, generate migration files, apply them. And how to reset when things go wrong."
 tags: [database, drizzle, sqlite]
 sources:
   - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
   - "https://orm.drizzle.team/"
+  - raw/before-we-start/database-migrations.md
 related: [repo-setup, day-1-fundamentals/codebase-exploration]
 first_seen: log/2026-06-02
 first_seen_label: 2026-06-02 · Before We Start
