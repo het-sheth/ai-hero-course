@@ -3,12 +3,13 @@ title: Exercise Workflow
 topic: before-we-start
 status: learning
 created: 2026-06-03
-updated: 2026-06-03
+updated: 2026-06-09
 lede: "The course is interactive exercises in the playground — to do one yourself you get your repo into the same state it was when the exercise was recorded. Three commands handle this: pnpm reset, pnpm cherry-pick, and pnpm pull."
 tags: [workflow, git, exercises]
 sources:
   - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
   - "https://github.com/het-sheth/cohort-004-project"
+  - raw/before-we-start/how-to-take-this-course.md
 related: [repo-setup]
 first_seen: log/2026-06-03
 first_seen_label: 2026-06-03 · Before We Start
