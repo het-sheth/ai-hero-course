@@ -3,11 +3,12 @@ title: The Seven-Phase Process
 topic: process
 status: learning
 created: 2026-06-01
-updated: 2026-06-01
+updated: 2026-06-09
 lede: "The spine of the whole course: a repeatable process you wrap around any coding agent so it ships code on a real codebase. The point isn't a rigid framework — it's a process you own and iterate on."
 tags: [process, workflow, afk]
 sources:
   - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
+  - raw/before-we-start/where-were-going.md
 related: [day-1-fundamentals/grill-execute-clear, day-3-planning/prds, day-5-afk-agents/afk-agents]
 first_seen: log/2026-06-01
 first_seen_label: 2026-06-01 · Where We're Going
