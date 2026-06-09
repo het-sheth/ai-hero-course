@@ -3,13 +3,14 @@ title: Managing Your Claude Code Session
 topic: gtk-claude-code
 status: learning
 created: 2026-06-04
-updated: 2026-06-04
+updated: 2026-06-09
 lede: "Pure mechanics: how to send prompts, inspect what's happening (usage + context), interrupt mid-run, and clear the session for a fresh start. The when and why come later in the course — this is just the buttons."
 tags: [claude-code, basics, context]
 sources:
   - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
   - "https://code.claude.com/docs/en/interactive-mode"
-related: [before-we-start/claude-setup, day-1-fundamentals/compaction-and-handing-off]
+  - raw/gtk-claude-code/managing-your-session.md
+related: [before-we-start/claude-setup, prompting-in-the-terminal, day-1-fundamentals/compaction-and-handing-off]
 first_seen: log/2026-06-04
 first_seen_label: 2026-06-04 · Getting to Know Claude Code
 order: 1
