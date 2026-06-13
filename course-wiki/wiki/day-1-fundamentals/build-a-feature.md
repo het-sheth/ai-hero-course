@@ -75,6 +75,37 @@ Describe the problem to Claude in plain language — what you expected vs. what 
 fixing it yourself; that conversation is part of the natural build cycle. Check `/context` again; if
 you're low, wrap up or start a fresh session for the next phase.
 
-> [!NOTE] Solution sub-page
-> The course has a separate **Solution** walkthrough for this lesson (commit `03.04.01` — "built
-> star ratings"). Its content isn't captured here yet.
+## Matt's solution walkthrough
+
+How the demo run actually unfolded — a good illustration of context paranoia in practice:
+
+1. **Plan mode + Explore subagent** — the prompt put Claude into plan mode and spawned an Explore
+   [[subagents|subagent]] for a meaty repo scan.
+2. **Clarifying questions** — Claude asked what the initial prompt left open: *only enrolled
+   students can rate?* (yes — more reliable reviews), *what scale?* (1–5), *ratings on the
+   dashboard too?* Matt didn't know what the dashboard showed, so he chose "chat about this," asked
+   Claude to list it, decided it's private, and said **no** — only where the course is sold.
+3. **Plan subagent** → a multi-step plan (schema, rating service, list page, detail page,
+   verification). Matt skims top-level steps + the top-of-file context summary.
+4. **The context-paranoia moment** — at the approve step he `Esc`'d out to run `/context`: **36%**,
+   bottom of the dumb zone. So instead of barrelling on, he chose *"clear the context, keep only the
+   plan, auto-accept edits."* Downside: Claude re-explores to catch up — worth it to stay sharp.
+5. **Implement + migrate** — Claude worked the task list; the **DB migration** was the first
+   permission prompt (Matt approves migrations **once**, never "always"). After a local
+   `sqlite3`-not-found detour and a `db:seed`, done — `/context` now **32%**, comfortably in the
+   smart zone. Clearing earlier paid off.
+6. **Test + commit** — as enrolled students (Emma, then Olivia) he rated via the sidebar; the
+   average updated live to **4.5**. Then `commit` in Claude to stage + write the message.
+
+> [!TIP] The takeaway isn't the feature
+> It's the loop: observe → steer at the questions → watch `/context` → clear *before* the dumb zone,
+> not after → keep migrations under manual control. Afterwards, jot down unresolved questions (what
+> *is* plan mode? how to debug with the agent? how much to review?) — the course returns to them.
+
+> [!NOTE] I did this exercise myself
+> Built the star-rating feature in my cohort fork:
+> [het-sheth/cohort-004-project#1](https://github.com/het-sheth/cohort-004-project/pull/1) —
+> `course_ratings` table + unique-constraint upsert, a rating service, the detail-page widget
+> (fetcher + toast), and the average on list cards. Verified with typecheck + build + a rolled-back
+> DB smoke test. (My env needed Node 22 for `better-sqlite3`'s native ABI — ran DB/build via
+> `fnm exec --using=22`.)
