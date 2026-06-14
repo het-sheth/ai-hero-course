@@ -42,3 +42,13 @@ test('build --check: fixture bundle is conformant (no problems)', () => {
   const r = build({ rootDir: FIX, check: true });
   assert.equal(r.problems.length, 0);
 });
+
+test('build --check: detects index.md drift', () => {
+  const dir = path.join(HERE, 'fixtures/drift');
+  const r = build({ rootDir: dir, check: true });
+  const p = r.problems.join('\n');
+  assert.match(p, /mod\/index\.md lists \/mod\/ghost\.md but no such page/);
+  assert.match(p, /mod\/beta is not listed in mod\/index\.md/);
+  assert.match(p, /log\/index\.md lists \/log\/2026-01-01\.md but no such log/);
+  assert.match(p, /log\/2026-06-01 is not listed in log\/index\.md/);
+});

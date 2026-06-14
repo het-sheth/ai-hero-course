@@ -230,14 +230,35 @@ ${indexBody}
 </html>
 `]);
 
+  // --- drift: index.md lists must match the actual files on disk ---
+  const drift = [];
+  const listedConceptKeys = new Set();
+  for (const m of modules) {
+    for (const c of m.concepts) {
+      const key = c.href.replace(/^\//, '').replace(/\.md$/, ''); // topic/slug
+      listedConceptKeys.add(key);
+      if (!pageByKey.has(key)) drift.push(`${m.topic}/index.md lists ${c.href} but no such page exists`);
+    }
+  }
+  for (const p of pages) {
+    if (!listedConceptKeys.has(p.key)) drift.push(`${p.key} is not listed in ${p.topic}/index.md`);
+  }
+  const logKeys = new Set(logs.map((l) => `log/${l.slug}`));
+  const listedLogKeys = new Set();
+  for (const it of logItems) {
+    const key = it.href.replace(/^\//, '').replace(/\.md$/, ''); // log/slug
+    listedLogKeys.add(key);
+    if (!logKeys.has(key)) drift.push(`log/index.md lists ${it.href} but no such log exists`);
+  }
+  for (const l of logs) {
+    if (!listedLogKeys.has(`log/${l.slug}`)) drift.push(`log/${l.slug} is not listed in log/index.md`);
+  }
+
   // validation
   const conformance = checkBundle(WIKI_DIR, allMd);
-  const problems = [...conformance, ...missing.map((m) => `broken link: ${m}`)];
-  if (problems.length) {
-    console.error('Problems:\n  ' + problems.join('\n  '));
-    if (check) process.exit(1);
-  }
-  if (check) { console.log(`check ok: ${pages.length} pages, ${logs.length} logs, ${problems.length} problems`); return { pages, logs, problems }; }
+  const problems = [...conformance, ...missing.map((m) => `broken link: ${m}`), ...drift.map((m) => `drift: ${m}`)];
+  if (problems.length) console.error('Problems:\n  ' + problems.join('\n  '));
+  if (check) { console.log(`check ${problems.length ? 'FAILED' : 'ok'}: ${pages.length} pages, ${logs.length} logs, ${problems.length} problems`); return { pages, logs, problems }; }
 
   if (existsSync(SITE_DIR)) rmSync(SITE_DIR, { recursive: true, force: true });
   mkdirSync(join(SITE_DIR, 'assets'), { recursive: true });
@@ -249,5 +270,7 @@ ${indexBody}
 
 // CLI entry
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
-  build({ check: process.argv.includes('--check') });
+  const check = process.argv.includes('--check');
+  const { problems } = build({ check });
+  if (check && problems.length) process.exit(1);
 }
