@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { walkMd } from '../lib/okf.mjs';
 import { mdToHtmlHref } from '../lib/okf.mjs';
+import { parseIndexList } from '../lib/okf.mjs';
 
 test('walkMd returns [] for a missing dir', () => {
   assert.deepEqual(walkMd('/no/such/dir/here'), []);
@@ -34,4 +35,22 @@ test('mdToHtmlHref: preserves fragment', () => {
 test('mdToHtmlHref: leaves non-md links alone', () => {
   assert.equal(mdToHtmlHref('https://example.com', 'log'), 'https://example.com');
   assert.equal(mdToHtmlHref('#anchor', 'log'), '#anchor');
+});
+
+test('parseIndexList: parses title, href, description', () => {
+  const body = `# Day 1 · Fundamentals
+
+* [Constraints of LLMs](/day-1-fundamentals/constraints-of-llms.md) - What models can and can't do.
+* [Subagents](/day-1-fundamentals/subagents.md) — Spawning helpers.
+- [No desc](/day-1-fundamentals/x.md)
+`;
+  assert.deepEqual(parseIndexList(body), [
+    { title: 'Constraints of LLMs', href: '/day-1-fundamentals/constraints-of-llms.md', description: "What models can and can't do." },
+    { title: 'Subagents', href: '/day-1-fundamentals/subagents.md', description: 'Spawning helpers.' },
+    { title: 'No desc', href: '/day-1-fundamentals/x.md', description: '' },
+  ]);
+});
+
+test('parseIndexList: ignores non-list lines', () => {
+  assert.deepEqual(parseIndexList('# Heading\n\nSome prose.\n'), []);
 });

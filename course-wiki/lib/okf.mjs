@@ -14,6 +14,17 @@ export function walkMd(dir) {
   return out;
 }
 
+// Parse a §6 index.md body into [{ title, href, description }].
+export function parseIndexList(body) {
+  const re = /^\s*[-*]\s*\[([^\]]+)\]\(([^)]+)\)\s*(?:[—-]\s*(.*\S))?\s*$/;
+  const items = [];
+  for (const line of body.split('\n')) {
+    const m = line.match(re);
+    if (m) items.push({ title: m[1].trim(), href: m[2].trim(), description: (m[3] || '').trim() });
+  }
+  return items;
+}
+
 // Rewrite a markdown link href to a relative .html href from pageDir (a dir
 // relative to the bundle root, e.g. "day-1-fundamentals" or "log" or "").
 // Absolute hrefs start with "/" (bundle-root relative). Only .md hrefs change.
