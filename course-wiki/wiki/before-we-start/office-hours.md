@@ -1,19 +1,28 @@
 ---
 title: Office Hours
-topic: before-we-start
 status: solid
-created: 2026-06-09
-updated: 2026-06-09
-lede: "Three 30–45 min live office-hours streams across the two-week cohort, on YouTube Live. Not mandatory — mostly for vibes — and all recorded as VODs, so you can catch anything useful later."
-desc: Live YouTube office hours — three sessions, optional, all recorded as VODs.
-tags: [office-hours, logistics, cohort, youtube]
+created: 2026-06-09T00:00:00.000Z
+desc: 'Live YouTube office hours — three sessions, optional, all recorded as VODs.'
+tags:
+  - office-hours
+  - logistics
+  - cohort
+  - youtube
 sources:
-  - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
+  - >-
+    https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04
   - raw/before-we-start/office-hours.md
-related: [navigating-the-discord]
+related:
+  - /before-we-start/navigating-the-discord.md
 first_seen: log/2026-06-04
 first_seen_label: 2026-06-04 · Office Hours
 order: 5
+type: concept
+description: >-
+  Three 30–45 min live office-hours streams across the two-week cohort, on
+  YouTube Live. Not mandatory — mostly for vibes — and all recorded as VODs, so
+  you can catch anything useful later.
+timestamp: 2026-06-09T00:00:00.000Z
 ---
 
 Matt runs **three live office-hours streams** during the two-week cohort — about 30–45 minutes each,

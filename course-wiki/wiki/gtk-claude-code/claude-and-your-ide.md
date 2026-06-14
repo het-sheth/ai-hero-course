@@ -1,19 +1,28 @@
 ---
 title: Claude & Your IDE
-topic: gtk-claude-code
 status: learning
-created: 2026-06-09
-updated: 2026-06-09
-lede: "Connecting Claude Code to your IDE with /ide. The big payoff is diff management — rich, reviewable diffs in your editor instead of awkward terminal diffs, so you can scroll, tweak, and accept changes in context."
-desc: "/ide integration — its main value is rich, editable diffs in your editor."
-tags: [claude-code, ide, diffs]
+created: 2026-06-09T00:00:00.000Z
+desc: '/ide integration — its main value is rich, editable diffs in your editor.'
+tags:
+  - claude-code
+  - ide
+  - diffs
 sources:
-  - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
+  - >-
+    https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04
   - raw/gtk-claude-code/claude-and-your-ide.md
-related: [running-bash-commands, going-forwards-and-backwards-in-time]
+related:
+  - /gtk-claude-code/running-bash-commands.md
+  - /gtk-claude-code/going-forwards-and-backwards-in-time.md
 first_seen: log/2026-06-09
 first_seen_label: 2026-06-09 · Getting to Know Claude Code
 order: 3
+type: concept
+description: >-
+  Connecting Claude Code to your IDE with /ide. The big payoff is diff
+  management — rich, reviewable diffs in your editor instead of awkward terminal
+  diffs, so you can scroll, tweak, and accept changes in context.
+timestamp: 2026-06-09T00:00:00.000Z
 ---
 
 When working with Claude Code, you'll want it to integrate smoothly with your development environment. The IDE integration isn't just a nice-to-have — it shapes how you interact with Claude's output, especially managing code changes. The most useful part is how Claude Code handles diffs: instead of a hard-to-read terminal format, your IDE displays them in a rich, interactive way. You can scroll through files, review changes line-by-line, and even make tweaks before accepting them.

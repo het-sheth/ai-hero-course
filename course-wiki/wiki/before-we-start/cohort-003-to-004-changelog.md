@@ -1,19 +1,28 @@
 ---
-title: "Appendix: Cohort 003 → 004 Changelog"
-topic: before-we-start
+title: 'Appendix: Cohort 003 → 004 Changelog'
 status: solid
-created: 2026-06-09
-updated: 2026-06-09
-lede: "What changed between Cohort 003 and 004 — only relevant if you took 003. The one nugget worth keeping: Day 5 'Ralph' was renamed to 'AFK Agents', so old community references to Ralph mean today's AFK agents."
-desc: "Diff of 003 → 004. Key decoder: 'Ralph' = AFK Agents."
-tags: [changelog, appendix, cohort, reference]
+created: 2026-06-09T00:00:00.000Z
+desc: 'Diff of 003 → 004. Key decoder: ''Ralph'' = AFK Agents.'
+tags:
+  - changelog
+  - appendix
+  - cohort
+  - reference
 sources:
-  - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
+  - >-
+    https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04
   - raw/before-we-start/cohort-003-to-004-changelog.md
-related: [day-5-afk-agents/afk-agents]
+related:
+  - /day-5-afk-agents/afk-agents.md
 first_seen: log/2026-06-04
 first_seen_label: 2026-06-04 · Changelog appendix
 order: 6
+type: concept
+description: >-
+  What changed between Cohort 003 and 004 — only relevant if you took 003. The
+  one nugget worth keeping: Day 5 'Ralph' was renamed to 'AFK Agents', so old
+  community references to Ralph mean today's AFK agents.
+timestamp: 2026-06-09T00:00:00.000Z
 ---
 
 A diff of what changed from Cohort 003 → 004. Only relevant if you took 003 — but the terminology
@@ -22,7 +31,7 @@ note below is useful for decoding older community/Discord references.
 > [!TIP] "Ralph" = AFK Agents
 > Day 5 was **renamed from "Ralph" to "AFK Agents"**, and every "Ralph" lesson was renamed to use
 > "AFK Agent". So when older community or Discord posts mention **Ralph**, they mean today's
-> [[day-5-afk-agents/afk-agents|AFK agents]].
+> [AFK agents](/day-5-afk-agents/afk-agents.md).
 
 ## What changed, by module
 

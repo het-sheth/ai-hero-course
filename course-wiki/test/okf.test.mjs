@@ -1,0 +1,112 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { walkMd } from '../lib/okf.mjs';
+import { mdToHtmlHref } from '../lib/okf.mjs';
+import { mdLinkTargets } from '../lib/okf.mjs';
+import { parseIndexList } from '../lib/okf.mjs';
+import { checkBundle } from '../lib/okf.mjs';
+
+const HERE = path.dirname(fileURLToPath(import.meta.url));
+
+test('walkMd returns [] for a missing dir', () => {
+  assert.deepEqual(walkMd('/no/such/dir/here'), []);
+});
+
+test('mdToHtmlHref: absolute link to another module', () => {
+  assert.equal(
+    mdToHtmlHref('/day-2-steering/steering.md', 'day-1-fundamentals'),
+    '../day-2-steering/steering.html',
+  );
+});
+
+test('mdToHtmlHref: absolute link within same module', () => {
+  assert.equal(mdToHtmlHref('/day-1-fundamentals/foo.md', 'day-1-fundamentals'), 'foo.html');
+});
+
+test('mdToHtmlHref: relative link', () => {
+  assert.equal(mdToHtmlHref('foo.md', 'day-1-fundamentals'), 'foo.html');
+});
+
+test('mdToHtmlHref: from a log page to a module page', () => {
+  assert.equal(mdToHtmlHref('/gtk-claude-code/permissions.md', 'log'), '../gtk-claude-code/permissions.html');
+});
+
+test('mdToHtmlHref: preserves fragment', () => {
+  assert.equal(mdToHtmlHref('/process/seven-phase-process.md#step-3', 'log'),
+    '../process/seven-phase-process.html#step-3');
+});
+
+test('mdToHtmlHref: leaves non-md links alone', () => {
+  assert.equal(mdToHtmlHref('https://example.com', 'log'), 'https://example.com');
+  assert.equal(mdToHtmlHref('#anchor', 'log'), '#anchor');
+});
+
+test('mdToHtmlHref: leaves external URLs ending in .md untouched', () => {
+  assert.equal(
+    mdToHtmlHref('https://github.com/org/repo/blob/main/README.md', 'day-1-fundamentals'),
+    'https://github.com/org/repo/blob/main/README.md',
+  );
+  assert.equal(
+    mdToHtmlHref('http://example.com/SPEC.md#section', 'log'),
+    'http://example.com/SPEC.md#section',
+  );
+  assert.equal(
+    mdToHtmlHref('//cdn.example.com/doc.md', 'log'),
+    '//cdn.example.com/doc.md',
+  );
+});
+
+test('mdLinkTargets: resolves local .md links to bundle-root keys', () => {
+  const body = 'See [Beta](beta.md) and [Steering](/day-2-steering/steering.md#foo).';
+  assert.deepEqual(mdLinkTargets(body, 'day-1-fundamentals'), [
+    { href: 'beta.md', key: 'day-1-fundamentals/beta' },
+    { href: '/day-2-steering/steering.md#foo', key: 'day-2-steering/steering' },
+  ]);
+});
+
+test('mdLinkTargets: ignores external, anchor, and non-md links', () => {
+  const body = '[ext](https://example.com/x.md) [anchor](#top) [img](pic.png) [proto](//cdn/x.md)';
+  assert.deepEqual(mdLinkTargets(body, 'mod'), []);
+});
+
+test('mdLinkTargets: ignores .md links inside fenced code blocks', () => {
+  const body = '```md\n[fake](/mod/ghost.md)\n```\nReal [Beta](/mod/beta.md).';
+  assert.deepEqual(mdLinkTargets(body, 'mod'), [
+    { href: '/mod/beta.md', key: 'mod/beta' },
+  ]);
+});
+
+test('parseIndexList: parses title, href, description', () => {
+  const body = `# Day 1 · Fundamentals
+
+* [Constraints of LLMs](/day-1-fundamentals/constraints-of-llms.md) - What models can and can't do.
+* [Subagents](/day-1-fundamentals/subagents.md) — Spawning helpers.
+- [No desc](/day-1-fundamentals/x.md)
+`;
+  assert.deepEqual(parseIndexList(body), [
+    { title: 'Constraints of LLMs', href: '/day-1-fundamentals/constraints-of-llms.md', description: "What models can and can't do." },
+    { title: 'Subagents', href: '/day-1-fundamentals/subagents.md', description: 'Spawning helpers.' },
+    { title: 'No desc', href: '/day-1-fundamentals/x.md', description: '' },
+  ]);
+});
+
+test('parseIndexList: ignores non-list lines', () => {
+  assert.deepEqual(parseIndexList('# Heading\n\nSome prose.\n'), []);
+});
+
+test('checkBundle: good bundle has no problems', () => {
+  const dir = path.join(HERE, 'fixtures/conformance/good');
+  assert.deepEqual(checkBundle(dir, walkMd(dir)), []);
+});
+
+test('checkBundle: bad bundle reports all three problems', () => {
+  const dir = path.join(HERE, 'fixtures/conformance/bad');
+  const list = checkBundle(dir, walkMd(dir));
+  assert.equal(list.length, 3);
+  const problems = list.join('\n');
+  assert.match(problems, /root index\.md may only contain okf_version/);
+  assert.match(problems, /index\.md must have no frontmatter/);
+  assert.match(problems, /missing non-empty 'type'/);
+});

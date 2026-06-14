@@ -1,18 +1,26 @@
 ---
 title: Setting Up Claude For The Course
-topic: before-we-start
 status: learning
-created: 2026-06-02
-updated: 2026-06-02
-lede: "Picking the agent, model, effort level, and subscription tier for the cohort. Short version: use Claude Code on your tier's default model at medium effort."
-tags: [claude-code, models, setup]
+created: 2026-06-02T00:00:00.000Z
+tags:
+  - claude-code
+  - models
+  - setup
 sources:
-  - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
-  - "https://code.claude.com/docs/en/setup"
-related: [repo-setup, gtk-claude-code/managing-your-session]
+  - >-
+    https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04
+  - 'https://code.claude.com/docs/en/setup'
+related:
+  - /before-we-start/repo-setup.md
+  - /gtk-claude-code/managing-your-session.md
 first_seen: log/2026-06-02
 first_seen_label: 2026-06-02 · Before We Start
 order: 4
+type: concept
+description: >-
+  Picking the agent, model, effort level, and subscription tier for the cohort.
+  Short version: use Claude Code on your tier's default model at medium effort.
+timestamp: 2026-06-02T00:00:00.000Z
 ---
 
 ## Which agent

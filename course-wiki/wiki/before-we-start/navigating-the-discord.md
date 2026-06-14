@@ -1,19 +1,30 @@
 ---
 title: Navigating The Discord
-topic: before-we-start
 status: solid
-created: 2026-06-09
-updated: 2026-06-09
-lede: "The Discord server is the main support resource for the cohort — community channels open to everyone, plus cohort-only channels for questions and office hours. Open a thread in #cohort-004-questions to get help."
-desc: The cohort's main support channel — community vs cohort-only channels, where to ask, and the hero system.
-tags: [discord, community, cohort, logistics]
+created: 2026-06-09T00:00:00.000Z
+desc: >-
+  The cohort's main support channel — community vs cohort-only channels, where
+  to ask, and the hero system.
+tags:
+  - discord
+  - community
+  - cohort
+  - logistics
 sources:
-  - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
+  - >-
+    https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04
   - raw/before-we-start/navigating-the-discord.md
-related: [exercise-workflow]
+related:
+  - /before-we-start/exercise-workflow.md
 first_seen: log/2026-06-01
 first_seen_label: 2026-06-01 · Navigating The Discord
 order: 0
+type: concept
+description: >-
+  The Discord server is the main support resource for the cohort — community
+  channels open to everyone, plus cohort-only channels for questions and office
+  hours. Open a thread in #cohort-004-questions to get help.
+timestamp: 2026-06-09T00:00:00.000Z
 ---
 
 The Discord server is the most useful support resource during the cohort: a place to get questions

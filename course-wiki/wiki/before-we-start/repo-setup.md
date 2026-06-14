@@ -1,19 +1,28 @@
 ---
 title: Repo Setup
-topic: before-we-start
 status: how-to
-created: 2026-06-01
-updated: 2026-06-09
-lede: "Getting the course playground running locally: clone the repo, install Node + pnpm, seed the database, run the dev server, and connect an agent."
-tags: [setup, pnpm, playground]
+created: 2026-06-01T00:00:00.000Z
+tags:
+  - setup
+  - pnpm
+  - playground
 sources:
-  - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
-  - "https://github.com/ai-hero-dev/cohort-004-project"
+  - >-
+    https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04
+  - 'https://github.com/ai-hero-dev/cohort-004-project'
   - raw/before-we-start/repo-setup.md
-related: [database-migrations, claude-setup, process/seven-phase-process]
+related:
+  - /before-we-start/database-migrations.md
+  - /before-we-start/claude-setup.md
+  - /process/seven-phase-process.md
 first_seen: log/2026-06-01
 first_seen_label: 2026-06-01 · Before We Start
 order: 1
+type: concept
+description: >-
+  Getting the course playground running locally: clone the repo, install Node +
+  pnpm, seed the database, run the dev server, and connect an agent.
+timestamp: 2026-06-09T00:00:00.000Z
 ---
 
 ## 1 · Clone the repository

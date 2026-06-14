@@ -1,19 +1,31 @@
 ---
 title: Permissions
-topic: gtk-claude-code
 status: learning
-created: 2026-06-09
-updated: 2026-06-09
-lede: "Claude Code's permission model is strict by default. Approve actions once or for a whole category, store rules in .claude/settings.local.json (allow/deny, wildcards), share them with your team via settings.json, and gate things like web fetches."
-desc: "Approve/deny model, settings.local.json allow/deny + wildcards, team sharing, web perms."
-tags: [claude-code, permissions, settings, security]
+created: 2026-06-09T00:00:00.000Z
+desc: >-
+  Approve/deny model, settings.local.json allow/deny + wildcards, team sharing,
+  web perms.
+tags:
+  - claude-code
+  - permissions
+  - settings
+  - security
 sources:
-  - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
+  - >-
+    https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04
   - raw/gtk-claude-code/permissions.md
-related: [running-bash-commands]
+related:
+  - /gtk-claude-code/running-bash-commands.md
 first_seen: log/2026-06-09
 first_seen_label: 2026-06-09 · Getting to Know Claude Code
 order: 6
+type: concept
+description: >-
+  Claude Code's permission model is strict by default. Approve actions once or
+  for a whole category, store rules in .claude/settings.local.json (allow/deny,
+  wildcards), share them with your team via settings.json, and gate things like
+  web fetches.
+timestamp: 2026-06-09T00:00:00.000Z
 ---
 
 When you work with an agent, you have to weigh risk against reward. Give Claude Code too much power and it might accidentally delete your entire file system. That's why Claude Code ships with a detailed permissions model that is very strict by default about what it lets the agent do. You stay in complete control of what Claude Code can access: approve actions one at a time, create rules for entire categories of commands, and even share those permissions with your team so everyone gets the same safe setup.

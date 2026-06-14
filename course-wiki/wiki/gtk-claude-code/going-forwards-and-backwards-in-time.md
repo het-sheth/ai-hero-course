@@ -1,19 +1,30 @@
 ---
 title: Going Forwards & Backwards in Time
-topic: gtk-claude-code
 status: learning
-created: 2026-06-09
-updated: 2026-06-09
-lede: "Navigating Claude Code's history like time travel: double-Esc rewind mode restores code and/or conversation to an earlier point, and sessions persist locally so you can always resume where you left off."
-desc: "Rewind mode (restore code/conversation) + locally-persisted, resumable sessions."
-tags: [claude-code, sessions, rewind]
+created: 2026-06-09T00:00:00.000Z
+desc: >-
+  Rewind mode (restore code/conversation) + locally-persisted, resumable
+  sessions.
+tags:
+  - claude-code
+  - sessions
+  - rewind
 sources:
-  - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
+  - >-
+    https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04
   - raw/gtk-claude-code/going-forwards-and-backwards-in-time.md
-related: [managing-your-session, claude-and-your-ide]
+related:
+  - /gtk-claude-code/managing-your-session.md
+  - /gtk-claude-code/claude-and-your-ide.md
 first_seen: log/2026-06-09
 first_seen_label: 2026-06-09 · Getting to Know Claude Code
 order: 4
+type: concept
+description: >-
+  Navigating Claude Code's history like time travel: double-Esc rewind mode
+  restores code and/or conversation to an earlier point, and sessions persist
+  locally so you can always resume where you left off.
+timestamp: 2026-06-09T00:00:00.000Z
 ---
 
 Claude Code lets you navigate your conversation history like you're moving through time. Made a change you want to undo? Just ask Claude to revert it. Need to go back further? You can rewind your entire session to any previous point. This is useful when experimenting — try something, and if it doesn't work, step back without losing your conversation history. Claude also persists all your sessions locally, so if a session gets interrupted you can resume exactly where you left off.
@@ -79,4 +90,4 @@ claude --continue
 Verify that the code and conversation are exactly as you left them.
 
 > [!TIP]
-> See [[managing-your-session]] for more on shaping the conversation, and [[claude-and-your-ide]] for working alongside your editor while you rewind and resume.
+> See [managing-your-session](/gtk-claude-code/managing-your-session.md) for more on shaping the conversation, and [claude-and-your-ide](/gtk-claude-code/claude-and-your-ide.md) for working alongside your editor while you rewind and resume.
