@@ -17,7 +17,7 @@ related:
   - /day-1-fundamentals/build-a-feature.md
   - /day-1-fundamentals/codebase-exploration.md
   - /day-1-fundamentals/constraints-of-llms.md
-  - /day-1-fundamentals/compaction-and-handing-off.md
+  - /day-1-fundamentals/compaction.md
 first_seen: log/2026-06-14
 first_seen_label: 2026-06-14 · Day 1 Fundamentals
 order: 8
@@ -313,4 +313,4 @@ The `/grill-me` workflow step-by-step:
 - **Execute** — implement against the shared understanding, like the first
   [Build A Feature](/day-1-fundamentals/build-a-feature.md) exercise.
 - **Clear** — wipe context before the next task; covered next in
-  [Compaction & handing off](/day-1-fundamentals/compaction-and-handing-off.md).
+  [Compaction](/day-1-fundamentals/compaction.md) and [Handing Off](/day-1-fundamentals/handing-off.md).

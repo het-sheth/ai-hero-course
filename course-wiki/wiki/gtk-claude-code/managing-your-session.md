@@ -14,7 +14,7 @@ sources:
 related:
   - /before-we-start/claude-setup.md
   - /gtk-claude-code/prompting-in-the-terminal.md
-  - /day-1-fundamentals/compaction-and-handing-off.md
+  - /day-1-fundamentals/compaction.md
 first_seen: log/2026-06-04
 first_seen_label: 2026-06-04 · Getting to Know Claude Code
 order: 1

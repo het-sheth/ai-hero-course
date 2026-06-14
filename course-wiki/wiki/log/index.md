@@ -1,6 +1,6 @@
 # Course log
 
-* [2026-06-14 · The Grill → Execute → Clear Loop](/log/2026-06-14.md) - Day 1 continues — the core session loop. Used the tiny /grill-me skill to design a lesson-comments feature by interview before writing any code, then executed against the shared understanding.
+* [2026-06-14 · Grill→Execute→Clear, Compaction, Handing Off (Day 1 done)](/log/2026-06-14.md) - Day 1 wraps — the core session loop (/grill-me then execute), Compaction (summarize to keep going; clean context beats repeated compaction), and Handing Off (/handoff into a fresh window — compaction's output without the sediment).
 * [2026-06-13 · Build A Feature + Non-Determinism](/log/2026-06-13.md) - Day 1 continues — built my first feature with Claude Code (a course star-rating system) in observation mode, then a detour on why agents are non-deterministic. Both grounded in their lesson transcripts under raw/.
 * [2026-06-09 · GTK Claude Code primer + Day 1 begins](/log/2026-06-09.md) - Finished the Getting to Know Claude Code primer (prompting, IDE, rewind/resume, bash, permissions), then opened Day 1 · Fundamentals with the two foundational lessons — the constraints of LLMs and what subagents are. Each lesson grounded in its transcript under raw/.
 * [2026-06-04 · Day 4](/log/2026-06-04.md) - Finished Before We Start — "Office Hours" (01.07) and the 003→004 changelog appendix (01.08) — then opened Getting to Know Claude Code with its Intro (02.01).
