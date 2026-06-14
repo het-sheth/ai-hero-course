@@ -9,7 +9,7 @@ cohort (004, June 2026).
 | Path | What it is |
 | --- | --- |
 | [`course-wiki/`](course-wiki/site/index.html) | The wiki — Markdown source in `wiki/`, generated HTML in `site/`. Build, then open `course-wiki/site/index.html`. |
-| `.claude/skills/course-wiki/` | Local copy of the `/course-wiki` skill that maintains the wiki (also installed globally). |
+| `.claude/skills/course-wiki/` | The project-scoped `/course-wiki` skill that maintains the wiki — loads only when working in this repo. |
 | `cohort-004-project/` | The forked exercise repo (gitignored here — it's its own repo). |
 | `docs/` | Design notes for this workspace. |
 

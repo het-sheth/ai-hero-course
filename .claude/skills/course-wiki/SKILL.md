@@ -8,8 +8,8 @@ A living second-brain wiki for Matt Pocock's *AI Coding for Real Engineers* coho
 of truth; a deterministic build regenerates the phosphor-terminal **HTML view** in `site/`.
 
 **Wiki root:** `~/projects/ai-hero-course/course-wiki/`
-(This skill exists in two places — global `~/.claude/skills/course-wiki/` and local
-`~/projects/ai-hero-course/.claude/skills/course-wiki/`. Keep them identical when you edit either.)
+(This skill is project-scoped: it lives only in this repo at `.claude/skills/course-wiki/`
+and loads automatically when you work inside `~/projects/ai-hero-course/`.)
 
 ## The one inviolable rule: never invent content
 Pages capture **Het's** learning. Prose comes ONLY from material he provides — lesson
