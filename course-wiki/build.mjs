@@ -135,8 +135,6 @@ export function build({ rootDir, check = false } = {}) {
       const { data, content } = matter(readFileSync(file, 'utf8'));
       return { file, slug: basename(file, '.md'), data, content };
     });
-  const logByKey = new Map(logs.map((l) => [`log/${l.slug}`, l]));
-
   // Navigation from reserved index.md bodies.
   const rootIndex = join(WIKI_DIR, 'index.md');
   const rootItems = existsSync(rootIndex) ? parseIndexList(matter(readFileSync(rootIndex, 'utf8')).content) : [];

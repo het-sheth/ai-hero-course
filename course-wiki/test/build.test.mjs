@@ -26,6 +26,15 @@ test('build: generates site from a conformant fixture bundle', () => {
   const log = readFileSync(path.join(FIX, 'site/log/2026-06-01.html'), 'utf8');
   assert.match(log, /href="\.\.\/mod\/alpha\.html"/); // log -> module link rewritten
 
+  // stub page renders the awaiting-notes callout (beta.md is status: stub, empty body)
+  const beta = readFileSync(path.join(FIX, 'site/mod/beta.html'), 'utf8');
+  assert.match(beta, /class="callout note"/);
+  assert.match(beta, /Stub/);
+
+  // reserved index.md files are NOT rendered as concept pages
+  assert.ok(!existsSync(path.join(FIX, 'site/mod/index.html')), 'mod/index.md must not render');
+  assert.ok(!existsSync(path.join(FIX, 'site/log/index.html')), 'log/index.md must not render');
+
   rmSync(path.join(FIX, 'site'), { recursive: true, force: true });
 });
 
