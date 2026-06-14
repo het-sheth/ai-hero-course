@@ -11,3 +11,9 @@ cohort-004-project/
 *.log
 .env
 .env.*
+
+# Downloaded website assets (mac pocock site)
+llms.txt
+rss.xml
+sitemap.md
+skills.md
