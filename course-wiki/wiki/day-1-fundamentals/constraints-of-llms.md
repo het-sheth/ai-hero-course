@@ -104,7 +104,7 @@ Because the model's background knowledge is a fuzzy JPEG anyway, the instructor'
 
 | Constraint | What it means | What to do |
 |---|---|---|
-| Smart zone / dumb zone | Attention scales quadratically; quality degrades past ~80–100k tokens | Keep context lean; clear and restart before you hit the dumb zone — see [grill-execute-clear](/day-1-fundamentals/grill-execute-clear.md) and [compaction-and-handing-off](/day-1-fundamentals/compaction-and-handing-off.md) |
+| Smart zone / dumb zone | Attention scales quadratically; quality degrades past ~80–100k tokens | Keep context lean; clear and restart before you hit the dumb zone — see [grill-execute-clear](/day-1-fundamentals/grill-execute-clear.md) and [compaction](/day-1-fundamentals/compaction.md) |
 | Fuzzy-JPEG memory | Background knowledge is lossy; hallucinations are structural, not accidental | Include docs and code examples in the prompt; never rely on model memory |
 | Statelessness | Every session starts blank; codebase tribal knowledge is lost on `/clear` | Invest in codebase quality and documentation; see [managing-your-session](/gtk-claude-code/managing-your-session.md) |
 | Knowledge cutoff | Training data has a hard end date; anything newer is unknown | Provide relevant docs/changelogs in context |

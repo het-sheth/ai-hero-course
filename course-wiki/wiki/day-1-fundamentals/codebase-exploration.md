@@ -77,7 +77,7 @@ You can watch it in action: the turn label shows `explore [title]` inside bracke
 > [!NOTE]
 > `Ctrl-O` while a turn is running expands it into verbose mode so you can see every tool call in real time. Toggle it off again to let the run finish without interruption.
 
-32% of a context window spent on a single exploration task is significant — see [constraints-of-llms](/day-1-fundamentals/constraints-of-llms.md) for why context budget matters, and [compaction-and-handing-off](/day-1-fundamentals/compaction-and-handing-off.md) for what to do when you run low.
+32% of a context window spent on a single exploration task is significant — see [constraints-of-llms](/day-1-fundamentals/constraints-of-llms.md) for why context budget matters, and [compaction](/day-1-fundamentals/compaction.md) for what to do when you run low.
 
 ## Why Word Choice Matters
 
