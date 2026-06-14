@@ -5,7 +5,7 @@ import { join, dirname, relative, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
 import { marked } from 'marked';
-import { walkMd, parseIndexList, checkBundle, mdToHtmlHref } from './lib/okf.mjs';
+import { walkMd, parseIndexList, checkBundle, mdToHtmlHref, mdLinkTargets } from './lib/okf.mjs';
 
 const ALERTS = { TIP: 'tip', NOTE: 'note', WARNING: 'warn', CAUTION: 'gotcha', IMPORTANT: 'note' };
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -149,6 +149,8 @@ export function build({ rootDir, check = false } = {}) {
 
   const missing = [];
   const writes = [];
+  // Valid cross-link targets: every concept page key + every log key.
+  const validKeys = new Set([...pageByKey.keys(), ...logs.map((l) => `log/${l.slug}`)]);
 
   // concept pages -> site/<topic>/<slug>.html
   for (const p of pages) {
@@ -178,6 +180,9 @@ export function build({ rootDir, check = false } = {}) {
       const k = String(r).replace(/^\//, '').replace(/\.md$/, '');
       if (!titleByKey.has(k)) missing.push(`${p.key} -> related ${r} (no such page)`);
     }
+    for (const { href, key } of mdLinkTargets(p.content, p.topic)) {
+      if (!validKeys.has(key)) missing.push(`${p.key} -> body link ${href} (no such page)`);
+    }
   }
 
   // log pages -> site/log/<slug>.html
@@ -192,6 +197,9 @@ export function build({ rootDir, check = false } = {}) {
       refsList(l.data.sources),
     ].filter(Boolean).join('\n');
     writes.push([outFile, shell({ title: l.data.title || l.slug, crumb: `<span class="sep">/</span> log <span class="sep">/</span> ${esc(l.data.title || l.slug)}`, css, body, backHref: relative(dirname(outFile), join(SITE_DIR, 'index.html')) })]);
+    for (const { href, key } of mdLinkTargets(l.content, 'log')) {
+      if (!validKeys.has(key)) missing.push(`log/${l.slug} -> body link ${href} (no such page)`);
+    }
   }
 
   // portal -> site/index.html

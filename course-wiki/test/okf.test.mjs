@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { walkMd } from '../lib/okf.mjs';
 import { mdToHtmlHref } from '../lib/okf.mjs';
+import { mdLinkTargets } from '../lib/okf.mjs';
 import { parseIndexList } from '../lib/okf.mjs';
 import { checkBundle } from '../lib/okf.mjs';
 
@@ -55,6 +56,26 @@ test('mdToHtmlHref: leaves external URLs ending in .md untouched', () => {
     mdToHtmlHref('//cdn.example.com/doc.md', 'log'),
     '//cdn.example.com/doc.md',
   );
+});
+
+test('mdLinkTargets: resolves local .md links to bundle-root keys', () => {
+  const body = 'See [Beta](beta.md) and [Steering](/day-2-steering/steering.md#foo).';
+  assert.deepEqual(mdLinkTargets(body, 'day-1-fundamentals'), [
+    { href: 'beta.md', key: 'day-1-fundamentals/beta' },
+    { href: '/day-2-steering/steering.md#foo', key: 'day-2-steering/steering' },
+  ]);
+});
+
+test('mdLinkTargets: ignores external, anchor, and non-md links', () => {
+  const body = '[ext](https://example.com/x.md) [anchor](#top) [img](pic.png) [proto](//cdn/x.md)';
+  assert.deepEqual(mdLinkTargets(body, 'mod'), []);
+});
+
+test('mdLinkTargets: ignores .md links inside fenced code blocks', () => {
+  const body = '```md\n[fake](/mod/ghost.md)\n```\nReal [Beta](/mod/beta.md).';
+  assert.deepEqual(mdLinkTargets(body, 'mod'), [
+    { href: '/mod/beta.md', key: 'mod/beta' },
+  ]);
 });
 
 test('parseIndexList: parses title, href, description', () => {

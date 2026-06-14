@@ -2,6 +2,7 @@
 import { readdirSync, existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
+import { marked } from 'marked';
 
 // True for hrefs that must never be rewritten as bundle-local paths:
 // a URL scheme (https:, mailto:) or protocol-relative (//host).
@@ -51,6 +52,21 @@ export function mdToHtmlHref(href, pageDir = '') {
   const html = targetRel.replace(/\.md$/i, '.html');
   const rel = path.posix.relative(pageDir || '.', html) || path.posix.basename(html);
   return rel + frag;
+}
+
+// Extract bundle-local .md link targets from a markdown body. Returns
+// [{ href, key }] where key is the bundle-root-relative path without .md
+// (e.g. "day-1-fundamentals/subagents" or "log/2026-06-01"). Uses the marked
+// lexer so links inside code fences are ignored. External/anchor/non-.md
+// links are skipped.
+export function mdLinkTargets(body, pageDir = '') {
+  const out = [];
+  marked.walkTokens(marked.lexer(body), (t) => {
+    if (t.type !== 'link') return;
+    const rel = localMdTargetRel(t.href, pageDir);
+    if (rel !== null) out.push({ href: t.href, key: rel.replace(/\.md$/i, '') });
+  });
+  return out;
 }
 
 // Validate §9 conformance. files = absolute paths (e.g. from walkMd(wikiDir)).

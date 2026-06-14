@@ -43,6 +43,15 @@ test('build --check: fixture bundle is conformant (no problems)', () => {
   assert.equal(r.problems.length, 0);
 });
 
+test('build --check: detects broken body links to missing pages', () => {
+  const dir = path.join(HERE, 'fixtures/badlink');
+  const r = build({ rootDir: dir, check: true });
+  const p = r.problems.join('\n');
+  assert.match(p, /mod\/alpha -> body link \/mod\/ghost\.md \(no such page\)/);
+  // the broken body link is the ONLY problem in an otherwise-conformant bundle
+  assert.equal(r.problems.length, 1);
+});
+
 test('build --check: detects index.md drift', () => {
   const dir = path.join(HERE, 'fixtures/drift');
   const r = build({ rootDir: dir, check: true });
