@@ -85,11 +85,36 @@ be able to say, okay, we're ready to implement, let's freaking go. Write down an
 you have, write down any notes, write down any ways that you think you might improve this skill and
 I will see you in the solution. Good luck.
 
-## The grill-me skill (quoted from the lesson)
+## The grill-me skill — actual file (cohort repo, commit `fc098f6` = `03.08.01`)
 
-The entire skill is short. Its instruction is essentially:
+Retrieved verbatim from `.claude/skills/grill-me/SKILL.md` in the upstream cohort repo
+(`ai-hero-dev/cohort-004-project`, branch `live-run-through`). The transcript quote above matches;
+the real file additionally carries frontmatter with a `name` and a trigger `description`:
 
-> Interview me relentlessly about every aspect of this plan until we reach a shared understanding.
-> Walk down each branch of the design tree, resolving dependencies between decisions one by one.
-> For each question, provide your recommended answer. Ask the questions one at a time, and if a
-> question can be answered by exploring the code base, explore the code base instead.
+```markdown title=".claude/skills/grill-me/SKILL.md"
+---
+name: grill-me
+description: Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions "grill me".
+---
+
+Interview me relentlessly about every aspect of this plan until we reach a shared understanding. Walk down each branch of the design tree, resolving dependencies between decisions one-by-one. For each question, provide your recommended answer.
+
+Ask the questions one at a time.
+
+If a question can be answered by exploring the codebase, explore the codebase instead.
+```
+
+## The solution — actual design decisions (commit `6751e1a` = `03.08.02`)
+
+From the real diff "Add lesson comments with soft-delete and moderation". Files: `app/db/schema.ts`,
+`app/services/commentService.ts` (+ `.test.ts`), `app/routes/courses.$slug.lessons.$lessonId.tsx`,
+a Drizzle migration, and a seed update. Concrete answers the grilling produced:
+
+- **Schema** — `lesson_comments` table: `id`, `lessonId` → `lessons`, `userId` → `users`, `content`,
+  `createdAt`, and `deletedAt` (nullable). Deletion is **soft** (a `deletedAt` timestamp), not a row
+  delete.
+- **Service surface** — `listCommentsForLesson`, `createComment`, `getCommentById`,
+  `getInstructorIdForLesson`, `softDeleteComment`.
+- **Who can delete / moderate** — a comment may be soft-deleted by the **comment author**, the
+  **lesson's course instructor**, or **any admin**. That's the moderation model: instructors and
+  admins can remove comments, authors can remove their own.

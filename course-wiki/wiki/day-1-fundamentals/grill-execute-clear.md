@@ -51,15 +51,27 @@ These decisions matter, and they depend on each other — exactly the kind of de
 
 ## The `/grill-me` skill
 
-The whole skill is tiny. Its instruction is essentially:
+The whole skill is tiny — this is the entire file (cohort repo commit `03.08.01`, verbatim):
 
-> [!NOTE] The entire skill
-> Interview me relentlessly about every aspect of this plan until we reach a shared understanding.
-> Walk down each branch of the design tree, resolving dependencies between decisions one by one.
-> For each question, provide your recommended answer. Ask the questions **one at a time**, and if a
-> question can be answered by exploring the code base, **explore the code base instead**.
+```markdown title=".claude/skills/grill-me/SKILL.md"
+---
+name: grill-me
+description: Interview the user relentlessly about a plan or design until reaching
+  shared understanding, resolving each branch of the decision tree. Use when user
+  wants to stress-test a plan, get grilled on their design, or mentions "grill me".
+---
 
-Two details do a lot of work here:
+Interview me relentlessly about every aspect of this plan until we reach a shared
+understanding. Walk down each branch of the design tree, resolving dependencies
+between decisions one-by-one. For each question, provide your recommended answer.
+
+Ask the questions one at a time.
+
+If a question can be answered by exploring the codebase, explore the codebase instead.
+```
+
+The body is the whole instruction; the frontmatter just gives it a name and the trigger phrases
+("stress-test a plan", "get grilled", "grill me"). Two details do a lot of work here:
 
 - **"Ask one at a time" + "recommended answer"** — you're never staring at a wall of questions, and
   you can often just accept the recommendation and keep moving.
@@ -100,7 +112,9 @@ design concept** before any code exists.
 - **Clear** — wipe context before the next task; covered next in
   [Compaction & handing off](/day-1-fundamentals/compaction-and-handing-off.md).
 
-> [!NOTE] Matt's solution
-> Matt's own run (commit `03.08.02`) shipped lesson comments **with soft-delete and moderation**
-> built in — a concrete answer to the "can instructors moderate / delete?" branches of the design
-> tree.
+> [!NOTE] Matt's solution (commit `03.08.02`)
+> The real diff answers the design tree concretely. A `lesson_comments` table (`lessonId`, `userId`,
+> `content`, `createdAt`, **`deletedAt`**) makes deletion a *soft* delete — a timestamp, not a row
+> removal. A comment can be soft-deleted by **its author, the lesson's course instructor, or any
+> admin** (`softDeleteComment` in `commentService.ts`). That's the moderation model: instructors and
+> admins remove comments, authors remove their own.
