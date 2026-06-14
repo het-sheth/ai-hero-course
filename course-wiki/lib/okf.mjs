@@ -1,6 +1,7 @@
 // OKF v0.1 format helpers for course-wiki. Pure logic, no site/HTML concerns.
-import { readdirSync, existsSync } from 'node:fs';
+import { readdirSync, existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
+import matter from 'gray-matter';
 
 // Recursively list every .md file under dir (absolute paths).
 export function walkMd(dir) {
@@ -39,4 +40,31 @@ export function mdToHtmlHref(href, pageDir = '') {
   const html = targetRel.replace(/\.md$/i, '.html');
   const rel = path.posix.relative(pageDir || '.', html) || path.posix.basename(html);
   return rel + frag;
+}
+
+// Validate §9 conformance. files = absolute paths (e.g. from walkMd(wikiDir)).
+export function checkBundle(wikiDir, files) {
+  const problems = [];
+  const rootIndex = path.join(wikiDir, 'index.md');
+  for (const f of files) {
+    const base = path.basename(f);
+    const raw = readFileSync(f, 'utf8');
+    const hasFrontmatter = /^---\r?\n/.test(raw);
+    if (base === 'index.md') {
+      if (f === rootIndex) {
+        const { data } = matter(raw);
+        const extra = Object.keys(data).filter((k) => k !== 'okf_version');
+        if (extra.length) problems.push(`${f}: root index.md may only contain okf_version frontmatter (found: ${extra.join(', ')})`);
+      } else if (hasFrontmatter) {
+        problems.push(`${f}: index.md must have no frontmatter (§6)`);
+      }
+    } else if (base === 'log.md') {
+      // Not produced by this bundle; nothing to validate.
+    } else {
+      if (!hasFrontmatter) { problems.push(`${f}: concept doc missing frontmatter`); continue; }
+      const { data } = matter(raw);
+      if (!data.type || !String(data.type).trim()) problems.push(`${f}: missing non-empty 'type'`);
+    }
+  }
+  return problems;
 }

@@ -1,8 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { walkMd } from '../lib/okf.mjs';
 import { mdToHtmlHref } from '../lib/okf.mjs';
 import { parseIndexList } from '../lib/okf.mjs';
+import { checkBundle } from '../lib/okf.mjs';
+
+const HERE = path.dirname(fileURLToPath(import.meta.url));
 
 test('walkMd returns [] for a missing dir', () => {
   assert.deepEqual(walkMd('/no/such/dir/here'), []);
@@ -53,4 +58,17 @@ test('parseIndexList: parses title, href, description', () => {
 
 test('parseIndexList: ignores non-list lines', () => {
   assert.deepEqual(parseIndexList('# Heading\n\nSome prose.\n'), []);
+});
+
+test('checkBundle: good bundle has no problems', () => {
+  const dir = path.join(HERE, 'fixtures/conformance/good');
+  assert.deepEqual(checkBundle(dir, walkMd(dir)), []);
+});
+
+test('checkBundle: bad bundle reports all three problems', () => {
+  const dir = path.join(HERE, 'fixtures/conformance/bad');
+  const problems = checkBundle(dir, walkMd(dir)).join('\n');
+  assert.match(problems, /root index\.md may only contain okf_version/);
+  assert.match(problems, /index\.md must have no frontmatter/);
+  assert.match(problems, /missing non-empty 'type'/);
 });
