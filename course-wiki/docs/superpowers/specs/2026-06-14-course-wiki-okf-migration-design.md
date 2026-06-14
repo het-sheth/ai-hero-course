@@ -27,10 +27,19 @@ Authoritative sources:
 - **Reserved filenames (only two):** `index.md` (directory listing / progressive disclosure)
   and `log.md` (chronological update history). These MUST NOT be concept documents.
   All other `.md` files are concept documents.
+- **§6 — `index.md` has NO frontmatter.** Its body is sections of Markdown link lists:
+  `* [Title](/path) - short description`. (Single exception below.)
+- **§11 — version declaration:** a bundle MAY declare its version with `okf_version: "0.1"`
+  in a frontmatter block on the **bundle-root `index.md` only** — "the only place frontmatter
+  is permitted in an `index.md`."
+- **§7 — `log.md`** (if used): a flat list of date-grouped entries, newest first; date
+  headings MUST be ISO 8601 `YYYY-MM-DD`. (We do not use `log.md` — see Non-goals.)
 - **Cross-links:** plain Markdown links. `/`-prefixed paths are **bundle-root-absolute** and
   are *recommended* (stable across file moves); relative paths are also allowed.
-- **Conformance (producer):** every non-reserved `.md` has a parseable YAML frontmatter block
-  containing a non-empty `type`.
+- **§9 — Conformance (producer):** (1) every non-reserved `.md` has a parseable YAML
+  frontmatter block; (2) every such block has a non-empty `type`; (3) **every reserved
+  filename follows the §6/§7 structure.** Criterion 3 means a conformance check MUST validate
+  reserved files, not skip them.
 - **Consumer tolerance:** consumers MUST tolerate broken links, missing optional fields,
   unknown `type` values, unknown keys, and missing `index.md`.
 
@@ -58,9 +67,9 @@ stay outside the bundle; `build.mjs`, `node_modules`, `docs/` are tooling, also 
 
 ```
 wiki/                          # OKF bundle root
-├── index.md                   # type: index — entry point; lists modules in order
+├── index.md                   # reserved: NO frontmatter (except optional okf_version); lists modules in order
 ├── before-we-start/
-│   ├── index.md               # type: index — module title + lists concepts
+│   ├── index.md               # reserved: NO frontmatter; body lists this module's concepts
 │   ├── navigating-the-discord.md   # type: concept
 │   └── ...
 ├── day-1-fundamentals/
@@ -68,7 +77,7 @@ wiki/                          # OKF bundle root
 │   └── ...
 ├── ...                        # one folder per module (process, gtk-claude-code, day-1..6)
 └── log/
-    ├── index.md               # type: index — lists dated entries
+    ├── index.md               # reserved: NO frontmatter; body lists dated entries
     ├── 2026-06-01.md          # type: log  (moved in from top-level log/)
     └── ...
 ```
@@ -92,8 +101,11 @@ Only the *filename* `log.md` is reserved — the directory name `log/` and the d
 | `tags` | keep | Matches OKF `tags`. |
 | `status`, `first_seen`, `first_seen_label`, `order` | keep | Producer extensions. |
 
-`index.md` files (reserved) carry `type: index` + `title` + `description`; this is allowed
-(producers MAY add keys to reserved files) and lets the build distinguish them cleanly.
+`index.md` files are **reserved** and carry **no frontmatter** (§6) — not even `type`. The
+build distinguishes them by filename. The bundle-root `wiki/index.md` MAY carry a frontmatter
+block containing **only** `okf_version: "0.1"` (§11) to declare conformance; no other index.md
+may have frontmatter. Module titles, subtitles, and concept ledes are read from index.md
+**bodies** (§6 link lists), not frontmatter — see Navigation.
 
 ### Example concept page (after migration)
 
@@ -119,20 +131,24 @@ order: 0
 
 ## Navigation via `index.md` (topics.json retired)
 
-`topics.json` is removed. Its data moves into `index.md` files, which become the canonical,
-hand-authored navigation source:
+`topics.json` is removed. Its data moves into `index.md` **bodies** (§6 link-list structure),
+which become the canonical, hand-authored navigation source. No nav data lives in frontmatter.
 
-- **`wiki/index.md`** — body lists modules in order, each link carrying its subtitle:
+- **`wiki/index.md`** (bundle root) — optional `okf_version: "0.1"` frontmatter only; body
+  lists modules in order, each link carrying its subtitle as the §6 description:
   ```markdown
-  - [Day 1 · Fundamentals](/day-1-fundamentals/index.md) — How LLM agents actually work, and the core Claude Code loop.
+  * [Day 1 · Fundamentals](/day-1-fundamentals/index.md) - How LLM agents actually work, and the core Claude Code loop.
   ```
-  Module **order = link order**; **subtitle = text after the em-dash**.
-- **`wiki/<module>/index.md`** — `title` in frontmatter (was `topics.json` title); body lists
-  that module's concept pages as links in display order.
-- `build.mjs` reads these to generate the HTML hub instead of `topics.json`.
+  Module **order = list order**; module **title = link text**; module **subtitle = the
+  `- description` after the link** (was `topics.json` `order` / `title` / `subtitle`).
+- **`wiki/<module>/index.md`** — no frontmatter; body lists that module's concept pages as a
+  §6 link list in display order. Concept **title = link text**, optional **lede = description**.
+- `build.mjs` parses these bodies (link lists) to generate the HTML hub instead of reading
+  `topics.json`. Module section title/subtitle come from the **root** index.md list; concept
+  card order comes from the **module** index.md list.
 
-A page-list drift check is added (see Validation) so `index.md` and the actual `.md` files in
-a directory stay in sync.
+A page-list drift check is added (see Validation) so each module's `index.md` list and the
+actual concept `.md` files in that directory stay in sync.
 
 ## Cross-links → plain Markdown (bundle-root-absolute)
 
@@ -152,16 +168,17 @@ See [Steering agents](/day-2-steering/steering.md) for the persistent-instructio
 ## `log/` handling
 
 - Daily entries move to `wiki/log/<date>.md`, `type: log`, otherwise unchanged.
-- Add `wiki/log/index.md` (`type: index`) listing entries (newest first), feeding the hub
-  timeline (replaces the current frontmatter-`date`-sort that builds the timeline).
+- Add `wiki/log/index.md` (reserved, **no frontmatter**; §6 link list of entries, newest
+  first), feeding the hub timeline (replaces the current frontmatter-`date`-sort).
 - The generated **site output for logs stays `site/log/<slug>.html`** (only the *source*
   moves). `first_seen` is a *site* path (`log/<date>`, per `CONVENTIONS.md`), so it needs
   **no change**.
 
 ## `build.mjs` changes (≈60–80 lines touched; no rewrite)
 
-1. Remove the `topics.json` read; parse `wiki/index.md` (module order + subtitles) and each
-   `wiki/<module>/index.md` (module title + concept order/list).
+1. Remove the `topics.json` read; parse the §6 link-list **bodies** of `wiki/index.md`
+   (module order + title + subtitle) and each `wiki/<module>/index.md` (concept order/list).
+   Ignore index.md frontmatter except an optional root `okf_version`.
 2. Replace `preprocessWikilinks` with `.md`→`.html` link rewriting (absolute `/` resolved
    against `wiki/`) plus target-existence validation.
 3. Treat `index.md` as reserved: it drives sections/crumbs/nav, never a concept card.
@@ -181,8 +198,10 @@ A throwaway Node script performs the bulk edit across all concept pages (~45) an
 5. Move `log/` → `wiki/log/` (`git mv`). `first_seen` (a site path) is unchanged because
    the build keeps emitting logs to `site/log/`.
 
-Then hand-author `wiki/index.md` and each `wiki/<module>/index.md` from the current
-`topics.json` (`order`, `title`, `subtitle`). Delete `topics.json`.
+Then hand-author the reserved `index.md` files (§6 link-list bodies, **no frontmatter**) from
+the current `topics.json`: `wiki/index.md` lists modules (`title` → link text, `subtitle` →
+`- description`, in `order`) and may include an `okf_version: "0.1"` frontmatter block;
+each `wiki/<module>/index.md` lists its concepts. Delete `topics.json`.
 
 ## Validation
 
@@ -191,8 +210,11 @@ Then hand-author `wiki/index.md` and each `wiki/<module>/index.md` from the curr
   intentionally for quality.
 - New check: every non-`index.md` `.md` in a module dir is listed in that dir's `index.md`,
   and every listed link resolves (drift detection).
-- New check (conformance): every non-reserved `.md` has parseable frontmatter with a
-  non-empty `type`.
+- New check (§9 conformance) — **validates reserved files too, never skips them**:
+  - every non-reserved `.md` has parseable frontmatter with a non-empty `type`;
+  - every `index.md` has **no frontmatter**, except the bundle-root `index.md` which may
+    contain **only** `okf_version` (§6/§11) — fail if any index.md carries `type`/`title`/etc.;
+  - every `index.md` body parses as §6 link-list sections.
 - Keep the existing "stub page renders an awaiting-notes callout" behavior.
 - Acceptance: `npm run check` passes, `npm run build` produces a `site/` visually equivalent
   to today's, and `wiki/` validates as a conformant OKF v0.1 bundle.
