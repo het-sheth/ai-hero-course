@@ -26,7 +26,7 @@ function migrateConcept(file) {
   const { data, content } = matter(readFileSync(file, 'utf8'));
   data.type = 'concept';
   delete data.topic;
-  if ('lede' in data) { data.description = data.lede; delete data.lede; }
+  if ('lede' in data) { if (!('description' in data)) data.description = data.lede; delete data.lede; }
   if ('updated' in data) { data.timestamp = data.updated; delete data.updated; }
   if (Array.isArray(data.related)) data.related = data.related.map((r) => relToHref(r, topic));
   writeFileSync(file, matter.stringify(convertWikilinks(content, topic), data));
@@ -35,7 +35,7 @@ function migrateConcept(file) {
 function migrateLog(file) {
   const { data, content } = matter(readFileSync(file, 'utf8'));
   data.type = 'log';
-  if ('lede' in data) { data.description = data.lede; delete data.lede; }
+  if ('lede' in data) { if (!('description' in data)) data.description = data.lede; delete data.lede; }
   // log bodies reference module pages by [[module/slug]]; topic context is irrelevant
   // because those are always module-qualified. Use '' so bare slugs (rare) stay literal.
   writeFileSync(file, matter.stringify(convertWikilinks(content, ''), data));
