@@ -13,3 +13,19 @@ export function walkMd(dir) {
   }
   return out;
 }
+
+// Rewrite a markdown link href to a relative .html href from pageDir (a dir
+// relative to the bundle root, e.g. "day-1-fundamentals" or "log" or "").
+// Absolute hrefs start with "/" (bundle-root relative). Only .md hrefs change.
+export function mdToHtmlHref(href, pageDir = '') {
+  const hash = href.indexOf('#');
+  const frag = hash >= 0 ? href.slice(hash) : '';
+  const p = hash >= 0 ? href.slice(0, hash) : href;
+  if (!/\.md$/i.test(p)) return href;
+  const targetRel = p.startsWith('/')
+    ? p.slice(1)
+    : path.posix.normalize(path.posix.join(pageDir, p));
+  const html = targetRel.replace(/\.md$/i, '.html');
+  const rel = path.posix.relative(pageDir || '.', html) || path.posix.basename(html);
+  return rel + frag;
+}
