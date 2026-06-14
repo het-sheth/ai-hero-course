@@ -42,6 +42,21 @@ test('mdToHtmlHref: leaves non-md links alone', () => {
   assert.equal(mdToHtmlHref('#anchor', 'log'), '#anchor');
 });
 
+test('mdToHtmlHref: leaves external URLs ending in .md untouched', () => {
+  assert.equal(
+    mdToHtmlHref('https://github.com/org/repo/blob/main/README.md', 'day-1-fundamentals'),
+    'https://github.com/org/repo/blob/main/README.md',
+  );
+  assert.equal(
+    mdToHtmlHref('http://example.com/SPEC.md#section', 'log'),
+    'http://example.com/SPEC.md#section',
+  );
+  assert.equal(
+    mdToHtmlHref('//cdn.example.com/doc.md', 'log'),
+    '//cdn.example.com/doc.md',
+  );
+});
+
 test('parseIndexList: parses title, href, description', () => {
   const body = `# Day 1 · Fundamentals
 

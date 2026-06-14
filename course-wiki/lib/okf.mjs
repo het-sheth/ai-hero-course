@@ -3,6 +3,20 @@ import { readdirSync, existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
 
+// True for hrefs that must never be rewritten as bundle-local paths:
+// a URL scheme (https:, mailto:) or protocol-relative (//host).
+const isExternalHref = (href) => /^[a-z][a-z0-9+.-]*:/i.test(href) || href.startsWith('//');
+
+// For a bundle-local .md link, return its bundle-root-relative path (no leading
+// slash, fragment stripped). Returns null for external/anchor/non-.md links.
+function localMdTargetRel(href, pageDir) {
+  if (isExternalHref(href)) return null;
+  const hash = href.indexOf('#');
+  const p = hash >= 0 ? href.slice(0, hash) : href;
+  if (!/\.md$/i.test(p)) return null;
+  return p.startsWith('/') ? p.slice(1) : path.posix.normalize(path.posix.join(pageDir, p));
+}
+
 // Recursively list every .md file under dir (absolute paths).
 export function walkMd(dir) {
   if (!existsSync(dir)) return [];
@@ -30,13 +44,10 @@ export function parseIndexList(body) {
 // relative to the bundle root, e.g. "day-1-fundamentals" or "log" or "").
 // Absolute hrefs start with "/" (bundle-root relative). Only .md hrefs change.
 export function mdToHtmlHref(href, pageDir = '') {
+  const targetRel = localMdTargetRel(href, pageDir);
+  if (targetRel === null) return href; // external, anchor, or non-.md link
   const hash = href.indexOf('#');
   const frag = hash >= 0 ? href.slice(hash) : '';
-  const p = hash >= 0 ? href.slice(0, hash) : href;
-  if (!/\.md$/i.test(p)) return href;
-  const targetRel = p.startsWith('/')
-    ? p.slice(1)
-    : path.posix.normalize(path.posix.join(pageDir, p));
   const html = targetRel.replace(/\.md$/i, '.html');
   const rel = path.posix.relative(pageDir || '.', html) || path.posix.basename(html);
   return rel + frag;
