@@ -8,19 +8,20 @@ cohort (004, June 2026).
 
 | Path | What it is |
 | --- | --- |
-| [`course-wiki/`](course-wiki/index.html) | The wiki — rich self-contained HTML pages. Open `course-wiki/index.html` in a browser. |
+| [`course-wiki/`](course-wiki/site/index.html) | The wiki — Markdown source in `wiki/`, generated HTML in `site/`. Build, then open `course-wiki/site/index.html`. |
 | `.claude/skills/course-wiki/` | Local copy of the `/course-wiki` skill that maintains the wiki (also installed globally). |
 | `cohort-004-project/` | The forked exercise repo (gitignored here — it's its own repo). |
 | `docs/` | Design notes for this workspace. |
 
 ## The wiki
 
-Built as **HTML, not markdown**, following Thariq's
-[*Unreasonable Effectiveness of HTML*](https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html):
-richer than markdown, easy to read, easy to share. Structure:
+**Markdown-canonical** (Karpathy LLM-wiki pattern): the Markdown under `course-wiki/wiki/` is the
+source of truth; a deterministic build regenerates the HTML view in `course-wiki/site/` — richer
+than raw Markdown for reading and sharing (cf. Thariq's
+[*Unreasonable Effectiveness of HTML*](https://claude.com/blog/using-claude-code-the-unreasonable-effectiveness-of-html)). Structure:
 
-- **Concept pages** (`course-wiki/concepts/`) — one atomic, cross-linked page per concept.
-- **Course log** (`course-wiki/log/`) — one dated entry per study day, linking into the concepts.
+- **Concept pages** (`course-wiki/wiki/<module>/<slug>.md`) — one atomic, cross-linked page per concept.
+- **Course log** (`course-wiki/wiki/log/`) — one dated entry per study day, linking into the concepts.
 - **Design system** — a single `course-wiki/assets/wiki.css`; see `course-wiki/meta/style-guide.html`.
 
 **Content rule:** pages are written *only* from material I've actually worked through — never
@@ -32,7 +33,7 @@ auto-generated from the model's general knowledge. Every page cites its sources.
 /course-wiki    # then: "add the concept page for X" or "log today's notes"
 ```
 
-Open it: `open course-wiki/index.html`. The repo is public and GitHub-Pages-ready.
+Build and open it: `cd course-wiki && npm run build && open site/index.html`. The repo is public and GitHub-Pages-ready.
 
 ## The exercise repo
 
