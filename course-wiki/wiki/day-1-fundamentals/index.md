@@ -9,4 +9,4 @@
 * [Why Plan Mode Sucks](/day-1-fundamentals/why-plan-mode-sucks.md) - Plan mode skips the shared design concept. Better: explore → interview (grill-me) → implement.
 * [Grill → Execute → Clear](/day-1-fundamentals/grill-execute-clear.md) - The core session loop: /grill-me interviews you into a shared design concept, you execute, then clear. Practised by designing a lesson-comments feature.
 * [Compaction](/day-1-fundamentals/compaction.md) - Claude Code summarizes a full conversation into a smaller form to keep going past the limit — but repeated compaction leaves "sediment". Prefer clean context.
-* [Handing Off](/day-1-fundamentals/handing-off.md) - Passing work cleanly from one clean-context session to the next.
+* [Handing Off](/day-1-fundamentals/handing-off.md) - /handoff writes a tailored temp markdown doc so a fresh agent continues in a clean window — compaction's output without the sediment. Enables expand→contract flows.
