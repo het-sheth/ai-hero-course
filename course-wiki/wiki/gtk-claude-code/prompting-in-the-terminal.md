@@ -1,19 +1,28 @@
 ---
 title: Prompting in the Terminal
-topic: gtk-claude-code
 status: learning
-created: 2026-06-09
-updated: 2026-06-09
-lede: "Practical prompting tips for the Claude Code terminal: reference files with @, stash a prompt with Ctrl+S to send something else first, and paste images for visual context."
-desc: "@ file references, Ctrl+S stash, pasting images — terminal prompting tips."
-tags: [claude-code, prompting, files]
+created: 2026-06-09T00:00:00.000Z
+desc: '@ file references, Ctrl+S stash, pasting images — terminal prompting tips.'
+tags:
+  - claude-code
+  - prompting
+  - files
 sources:
-  - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
+  - >-
+    https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04
   - raw/gtk-claude-code/prompting-in-the-terminal.md
-related: [managing-your-session, claude-and-your-ide]
+related:
+  - /gtk-claude-code/managing-your-session.md
+  - /gtk-claude-code/claude-and-your-ide.md
 first_seen: log/2026-06-09
 first_seen_label: 2026-06-09 · Getting to Know Claude Code
 order: 2
+type: concept
+description: >-
+  Practical prompting tips for the Claude Code terminal: reference files with @,
+  stash a prompt with Ctrl+S to send something else first, and paste images for
+  visual context.
+timestamp: 2026-06-09T00:00:00.000Z
 ---
 
 When working with Claude Code, you want to give Claude exactly the right context to succeed. The better you can reference files, manage your prompts, and provide visual context, the better results you'll get. These are a few practical techniques for communicating with Claude in the terminal.

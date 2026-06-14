@@ -1,23 +1,38 @@
 ---
 title: Why Plan Mode Sucks
-topic: day-1-fundamentals
 status: learning
-created: 2026-06-13
-updated: 2026-06-13
-lede: "Plan mode (shift-tab) makes the agent plan before writing — good in theory, but it truncates the interview and hands you a wall-of-text plan you can't tell you're aligned with. The fix: explore → interview hard (the missing 'shared design concept') → implement. Matt's /grill-me skill does the interview."
-desc: "Plan mode skips the shared design concept. Better: explore → interview (grill-me) → implement."
-tags: [claude-code, plan-mode, planning, grill-me]
+created: 2026-06-13T00:00:00.000Z
+desc: >-
+  Plan mode skips the shared design concept. Better: explore → interview
+  (grill-me) → implement.
+tags:
+  - claude-code
+  - plan-mode
+  - planning
+  - grill-me
 sources:
-  - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
+  - >-
+    https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04
   - raw/day-1-fundamentals/why-plan-mode-sucks.md
-related: [build-a-feature, grill-execute-clear, constraints-of-llms]
+related:
+  - /day-1-fundamentals/build-a-feature.md
+  - /day-1-fundamentals/grill-execute-clear.md
+  - /day-1-fundamentals/constraints-of-llms.md
 first_seen: log/2026-06-13
 first_seen_label: 2026-06-13 · Day 1 Fundamentals
 order: 7
+type: concept
+description: >-
+  Plan mode (shift-tab) makes the agent plan before writing — good in theory,
+  but it truncates the interview and hands you a wall-of-text plan you can't
+  tell you're aligned with. The fix: explore → interview hard (the missing
+  'shared design concept') → implement. Matt's /grill-me skill does the
+  interview.
+timestamp: 2026-06-13T00:00:00.000Z
 ---
 
 Matt used to recommend **plan mode** enthusiastically; he no longer does. (You saw the agent
-auto-enter it during [[build-a-feature|Build A Feature]].)
+auto-enter it during [Build A Feature](/day-1-fundamentals/build-a-feature.md).)
 
 ## What plan mode does
 
@@ -55,4 +70,4 @@ agent didn't build what you wanted* — sometimes via tiny details with massive 
 > valuable intent you can turn into a spec or take straight to implementation. Almost every one of
 > his sessions starts with `/grill-me`.
 
-Next: [[grill-execute-clear|the Grill → Execute → Clear loop]] puts this into practice.
+Next: [the Grill → Execute → Clear loop](/day-1-fundamentals/grill-execute-clear.md) puts this into practice.

@@ -1,24 +1,38 @@
 ---
 title: Build A Feature
-topic: day-1-fundamentals
 status: learning
-created: 2026-06-13
-updated: 2026-06-13
-lede: "Your first feature with Claude Code: a course star-rating system. The goal isn't a perfect feature — it's observing Claude's default behavior (does it spawn an Explore subagent? what does it ask?) and practising context paranoia, watching /context for the ~40% dumb-zone line."
-desc: "First feature (star ratings) — observe Claude's default workflow and watch /context for the 40% dumb-zone line."
-tags: [claude-code, workflow, context, feature]
+created: 2026-06-13T00:00:00.000Z
+desc: >-
+  First feature (star ratings) — observe Claude's default workflow and watch
+  /context for the 40% dumb-zone line.
+tags:
+  - claude-code
+  - workflow
+  - context
+  - feature
 sources:
-  - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
+  - >-
+    https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04
   - raw/day-1-fundamentals/build-a-feature.md
-related: [codebase-exploration, constraints-of-llms, subagents]
+related:
+  - /day-1-fundamentals/codebase-exploration.md
+  - /day-1-fundamentals/constraints-of-llms.md
+  - /day-1-fundamentals/subagents.md
 first_seen: log/2026-06-13
 first_seen_label: 2026-06-13 · Day 1 Fundamentals
 order: 4
+type: concept
+description: >-
+  Your first feature with Claude Code: a course star-rating system. The goal
+  isn't a perfect feature — it's observing Claude's default behavior (does it
+  spawn an Explore subagent? what does it ask?) and practising context paranoia,
+  watching /context for the ~40% dumb-zone line.
+timestamp: 2026-06-13T00:00:00.000Z
 ---
 
 ## The exercise: a star-rating system
 
-Having [[codebase-exploration|explored the repo]], you build your first feature: a **course review
+Having [explored the repo](/day-1-fundamentals/codebase-exploration.md), you build your first feature: a **course review
 system** where students leave a **1–5 star rating** (no written reviews). The average rating shows
 on the courses list page and the course detail page. It's chosen because it's meaty enough to touch
 all areas of the codebase, but not so complex the UI gets overwhelming.
@@ -40,7 +54,7 @@ all areas of the codebase, but not so complex the UI gets overwhelming.
    courses are visible. We want to show the average rating on the courses in
    the list page and on the course page itself.
    ```
-3. **Observe, don't drive** — watch what Claude does: Does it spawn an [[subagents|Explore subagent]]?
+3. **Observe, don't drive** — watch what Claude does: Does it spawn an [Explore subagent](/day-1-fundamentals/subagents.md)?
    What files does it read first? What questions does it ask? Take notes.
 4. **Review the plan** — read the steps, files, and verification it proposes. Push back if it
    doesn't match your vision (e.g. you don't want ratings on the dashboard) — steer *before*
@@ -56,8 +70,8 @@ orchestrator agent.
 
 > [!CAUTION] The 40% line
 > Around **40% usage (~80K tokens)** of the orchestrator's window is when to start getting nervous
-> about the [[constraints-of-llms|dumb zone]]. At that point, ask Claude to summarize what's left,
-> wrap up the current phase, or start a fresh session. (See [[constraints-of-llms]] for why.)
+> about the [dumb zone](/day-1-fundamentals/constraints-of-llms.md). At that point, ask Claude to summarize what's left,
+> wrap up the current phase, or start a fresh session. (See [constraints-of-llms](/day-1-fundamentals/constraints-of-llms.md) for why.)
 
 ## Testing the feature
 
@@ -80,7 +94,7 @@ you're low, wrap up or start a fresh session for the next phase.
 How the demo run actually unfolded — a good illustration of context paranoia in practice:
 
 1. **Plan mode + Explore subagent** — the prompt put Claude into plan mode and spawned an Explore
-   [[subagents|subagent]] for a meaty repo scan.
+   [subagent](/day-1-fundamentals/subagents.md) for a meaty repo scan.
 2. **Clarifying questions** — Claude asked what the initial prompt left open: *only enrolled
    students can rate?* (yes — more reliable reviews), *what scale?* (1–5), *ratings on the
    dashboard too?* Matt didn't know what the dashboard showed, so he chose "chat about this," asked

@@ -1,19 +1,32 @@
 ---
 title: The Constraints of LLMs
-topic: day-1-fundamentals
 status: learning
-created: 2026-06-09
-updated: 2026-06-09
-lede: "LLMs aren't junior devs — they're weirder. Four constraints shape everything: the smart zone / dumb zone (attention scales quadratically), they're a fuzzy-JPEG database (hallucinations), they're stateless, and they have a knowledge cutoff. Work with these, not against them."
-desc: "Smart zone vs dumb zone, fuzzy-JPEG memory, statelessness, knowledge cutoff — the four LLM constraints."
-tags: [llm, context-window, attention, fundamentals]
+created: 2026-06-09T00:00:00.000Z
+desc: >-
+  Smart zone vs dumb zone, fuzzy-JPEG memory, statelessness, knowledge cutoff —
+  the four LLM constraints.
+tags:
+  - llm
+  - context-window
+  - attention
+  - fundamentals
 sources:
-  - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
+  - >-
+    https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04
   - raw/day-1-fundamentals/constraints-of-llms.md
-related: [subagents, gtk-claude-code/managing-your-session]
+related:
+  - /day-1-fundamentals/subagents.md
+  - /gtk-claude-code/managing-your-session.md
 first_seen: log/2026-06-09
 first_seen_label: 2026-06-09 · Day 1 Fundamentals
 order: 1
+type: concept
+description: >-
+  LLMs aren't junior devs — they're weirder. Four constraints shape everything:
+  the smart zone / dumb zone (attention scales quadratically), they're a
+  fuzzy-JPEG database (hallucinations), they're stateless, and they have a
+  knowledge cutoff. Work with these, not against them.
+timestamp: 2026-06-09T00:00:00.000Z
 ---
 
 LLMs aren't junior developers who can work 24/7. They're something fundamentally weirder and more constrained. Working against these constraints produces garbage output. Working with them makes Claude Code a genuinely powerful coding partner.
@@ -91,7 +104,7 @@ Because the model's background knowledge is a fuzzy JPEG anyway, the instructor'
 
 | Constraint | What it means | What to do |
 |---|---|---|
-| Smart zone / dumb zone | Attention scales quadratically; quality degrades past ~80–100k tokens | Keep context lean; clear and restart before you hit the dumb zone — see [[grill-execute-clear]] and [[compaction-and-handing-off]] |
+| Smart zone / dumb zone | Attention scales quadratically; quality degrades past ~80–100k tokens | Keep context lean; clear and restart before you hit the dumb zone — see [grill-execute-clear](/day-1-fundamentals/grill-execute-clear.md) and [compaction-and-handing-off](/day-1-fundamentals/compaction-and-handing-off.md) |
 | Fuzzy-JPEG memory | Background knowledge is lossy; hallucinations are structural, not accidental | Include docs and code examples in the prompt; never rely on model memory |
-| Statelessness | Every session starts blank; codebase tribal knowledge is lost on `/clear` | Invest in codebase quality and documentation; see [[gtk-claude-code/managing-your-session]] |
+| Statelessness | Every session starts blank; codebase tribal knowledge is lost on `/clear` | Invest in codebase quality and documentation; see [managing-your-session](/gtk-claude-code/managing-your-session.md) |
 | Knowledge cutoff | Training data has a hard end date; anything newer is unknown | Provide relevant docs/changelogs in context |

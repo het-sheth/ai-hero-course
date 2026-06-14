@@ -1,19 +1,29 @@
 ---
 title: Running Bash Commands
-topic: gtk-claude-code
 status: learning
-created: 2026-06-09
-updated: 2026-06-09
-lede: "Three ways to drive bash from Claude Code: ! bash mode (output goes into Claude's context), Ctrl+B to background a long-running process like a dev server, and Ctrl+Z to suspend Claude entirely so your commands stay hidden from it (fg to resume)."
-desc: "! bash mode, Ctrl+B background, Ctrl+Z/fg suspend — driving bash from Claude."
-tags: [claude-code, bash, dev-server]
+created: 2026-06-09T00:00:00.000Z
+desc: '! bash mode, Ctrl+B background, Ctrl+Z/fg suspend — driving bash from Claude.'
+tags:
+  - claude-code
+  - bash
+  - dev-server
 sources:
-  - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
+  - >-
+    https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04
   - raw/gtk-claude-code/running-bash-commands.md
-related: [claude-and-your-ide, permissions]
+related:
+  - /gtk-claude-code/claude-and-your-ide.md
+  - /gtk-claude-code/permissions.md
 first_seen: log/2026-06-09
 first_seen_label: 2026-06-09 · Getting to Know Claude Code
 order: 5
+type: concept
+description: >-
+  Three ways to drive bash from Claude Code: ! bash mode (output goes into
+  Claude's context), Ctrl+B to background a long-running process like a dev
+  server, and Ctrl+Z to suspend Claude entirely so your commands stay hidden
+  from it (fg to resume).
+timestamp: 2026-06-09T00:00:00.000Z
 ---
 
 Bash commands turn the agent from a passive code writer into something that can seek feedback loops, work with your project, and use the full power of bash to find information and do things. Claude can run tests, check files, and respond to real output. There are three ergonomic ways to drive bash while Claude Code is running, and each serves a different purpose.

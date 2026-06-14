@@ -1,24 +1,37 @@
 ---
 title: Subagents
-topic: day-1-fundamentals
 status: learning
-created: 2026-06-09
-updated: 2026-06-09
-lede: "Subagents are a context-saving delegation mechanism: the orchestrator (the agent you talk to) spawns a subagent with a fresh context window to do focused work — like exploration — then gets back just a summary, keeping the main context clean for implementation."
-desc: "Context-saving delegation: orchestrator spawns fresh-context subagents that do focused work and report a summary back."
-tags: [claude-code, subagents, context-window, fundamentals]
+created: 2026-06-09T00:00:00.000Z
+desc: >-
+  Context-saving delegation: orchestrator spawns fresh-context subagents that do
+  focused work and report a summary back.
+tags:
+  - claude-code
+  - subagents
+  - context-window
+  - fundamentals
 sources:
-  - "https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04"
+  - >-
+    https://www.aihero.dev/cohorts/ai-coding-for-real-engineers-with-claude-code-2026-04
   - raw/day-1-fundamentals/subagents.md
-related: [constraints-of-llms, codebase-exploration]
+related:
+  - /day-1-fundamentals/constraints-of-llms.md
+  - /day-1-fundamentals/codebase-exploration.md
 first_seen: log/2026-06-09
 first_seen_label: 2026-06-09 · Day 1 Fundamentals
 order: 2
+type: concept
+description: >-
+  Subagents are a context-saving delegation mechanism: the orchestrator (the
+  agent you talk to) spawns a subagent with a fresh context window to do focused
+  work — like exploration — then gets back just a summary, keeping the main
+  context clean for implementation.
+timestamp: 2026-06-09T00:00:00.000Z
 ---
 
 ## Why subagents matter
 
-Claude Code's context window is finite — and part of it is always consumed before any real work begins. The system prompt, tools, and built-in instructions that make Claude Code behave like an agent occupy a fixed slice. What remains has to cover everything in the session: [[day-1-fundamentals/codebase-exploration]], understanding the task, making decisions, writing code, and responding to feedback.
+Claude Code's context window is finite — and part of it is always consumed before any real work begins. The system prompt, tools, and built-in instructions that make Claude Code behave like an agent occupy a fixed slice. What remains has to cover everything in the session: [codebase-exploration](/day-1-fundamentals/codebase-exploration.md), understanding the task, making decisions, writing code, and responding to feedback.
 
 This creates a direct tradeoff:
 
@@ -27,7 +40,7 @@ This creates a direct tradeoff:
 | Exploration | Less space left for implementation |
 | Implementation | Less repo context → worse output |
 
-Subagents are the mechanism Claude Code uses to escape that tradeoff. See [[day-1-fundamentals/constraints-of-llms]] for the underlying limits that make this necessary.
+Subagents are the mechanism Claude Code uses to escape that tradeoff. See [constraints-of-llms](/day-1-fundamentals/constraints-of-llms.md) for the underlying limits that make this necessary.
 
 ## The orchestrator and the subagent
 
