@@ -7,5 +7,5 @@
 * [Non-Determinism](/day-1-fundamentals/non-determinism.md) - Same prompt → different answers. Responses sit on a probability curve; expect outliers and ride the wave.
 * [Showing Context in the Status Line](/day-1-fundamentals/showing-context-in-status-line.md) - Surface live context usage in your status line (ccstatusline) so you can watch the dumb-zone line.
 * [Why Plan Mode Sucks](/day-1-fundamentals/why-plan-mode-sucks.md) - Plan mode skips the shared design concept. Better: explore → interview (grill-me) → implement.
+* [Grill → Execute → Clear](/day-1-fundamentals/grill-execute-clear.md) - The core session loop: /grill-me interviews you into a shared design concept, you execute, then clear. Practised by designing a lesson-comments feature.
 * [Compaction & handing off](/day-1-fundamentals/compaction-and-handing-off.md) - Surviving long sessions.
-* [Grill → execute → clear](/day-1-fundamentals/grill-execute-clear.md) - The core working loop for a session.
