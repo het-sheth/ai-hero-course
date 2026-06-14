@@ -1,14 +1,14 @@
 # START HERE — course-wiki
 
 A living second brain for Matt Pocock's *AI Coding for Real Engineers* (Cohort 004). This is a
-**Markdown-canonical** knowledge base: the Markdown under `wiki/` and `log/` is the source of
-truth. **Read the Markdown, not `site/`** — `site/` is generated HTML for humans and wastes tokens.
+**Markdown-canonical** knowledge base: the Markdown under `wiki/` is the source of truth.
+**Read the Markdown, not `site/`** — `site/` is generated HTML for humans and wastes tokens.
 
 ## How to read it
 - Start with the module folders under `wiki/<module>/`. Each `.md` is one atomic concept with
-  YAML frontmatter (`title`, `topic`, `status`, `lede`, `tags`, `sources`, `related`).
-- Follow `[[wikilinks]]` between pages.
-- `log/<date>.md` are dated entries threading through the concepts.
+  YAML frontmatter (`type`, `title`, `description`, `status`, `tags`, `sources`, `related`).
+- Cross-links are bundle-root-absolute Markdown links: `[Label](/module/slug.md)`.
+- `wiki/log/<date>.md` are dated entries threading through the concepts.
 - `raw/<module>/` holds immutable source material (lesson transcripts/notes) that pages cite.
 
 ## Modules (in order)
