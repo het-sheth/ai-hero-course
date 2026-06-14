@@ -49,7 +49,7 @@ export function checkBundle(wikiDir, files) {
   for (const f of files) {
     const base = path.basename(f);
     const raw = readFileSync(f, 'utf8');
-    const hasFrontmatter = /^---\r?\n/.test(raw);
+    const hasFrontmatter = matter.test(raw);
     if (base === 'index.md') {
       if (f === rootIndex) {
         const { data } = matter(raw);
